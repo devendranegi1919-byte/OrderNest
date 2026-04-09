@@ -96,11 +96,6 @@ A scalable food ordering backend built with Java 21, Spring Boot 3.x, and a micr
 | **Dev 2** | API Gateway, Eureka, Restaurant, Payment, Notification | Gateway routing, rate limiting, Kafka consumer |
 | **Dev 3** | Analytics, Admin Dashboard, Review & Rating | Metrics aggregation, admin moderation, review lifecycle |
 
-See individual prompt files for full phase plans:
-- [`DEV1_PROMPT.txt`](./DEV1_PROMPT.txt)
-- [`DEV2_PROMPT.txt`](./DEV2_PROMPT.txt)
-- [`DEV3_PROMPT.txt`](./DEV3_PROMPT.txt)
-
 ---
 
 ## Getting Started
