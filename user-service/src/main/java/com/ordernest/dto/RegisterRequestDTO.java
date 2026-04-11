@@ -15,7 +15,7 @@ public class RegisterRequestDTO {
     @NotBlank
     private String name;
     @NotBlank
-    private String phone;
+    private String phoneNumber;
     @Email
     @NotBlank
     private String email;
