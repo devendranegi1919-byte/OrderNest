@@ -24,19 +24,22 @@ public class JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public String generateToken(UUID userId, UserRole role) {
+    public String generateToken(UUID userId, UserRole role, String email) {
         return Jwts.builder()
                 .subject(String.valueOf(userId))
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(getSecretKey())
                 .claim("role", role)
+                .claim("email", email)
                 .compact();
     }
 
     public UUID extractUserId(String token) {
         return UUID.fromString(getPayload(token).getSubject());
     }
+
+    public String extractEmail(String token) {return getPayload(token).get("email", String.class);}
 
     private Claims getPayload(String token) {
         return Jwts.parser()

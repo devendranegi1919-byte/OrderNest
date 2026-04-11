@@ -1,6 +1,16 @@
 spring:
   application:
     name: user-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ordernest
+    username: ordernest
+    password: ordernest
+    hikari:
+      connection-init-sql: SET TimeZone='UTC'
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 server:
   port: 8081
@@ -19,5 +29,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 jwt:
-  secret: your-secret-key-here
+  secret: WSpsKRNtCdb99hofVJiC0X8ji4esmd3AyYpGTew1dJK1jiPDniDkD+aMEYd01XmIwyXeuJL9hENQK5liWllLWQ==
   expiration: 86400000

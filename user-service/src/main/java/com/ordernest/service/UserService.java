@@ -41,7 +41,7 @@ public class UserService {
         user.setRole(registerRequestDTO.getRole());
         User savedUser = userRepository.save(user);
 
-        String token = jwtService.generateToken(savedUser.getUserId(), savedUser.getRole());
+        String token = jwtService.generateToken(savedUser.getUserId(), savedUser.getRole(), savedUser.getEmail());
 
         return new AuthResponseDTO(token, savedUser.getName(), savedUser.getRole());
     }
@@ -51,7 +51,7 @@ public class UserService {
         if(!bCryptPasswordEncoder.matches(loginRequestDTO.getPassword(), user.getPassword())) {
             throw new WrongCredentialsException("Wrong password");
         }
-        String token = jwtService.generateToken(user.getUserId(), user.getRole());
+        String token = jwtService.generateToken(user.getUserId(), user.getRole(),  user.getEmail());
 
         return new AuthResponseDTO(token, user.getName(), user.getRole());
     }
