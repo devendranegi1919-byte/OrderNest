@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Service
-public class JwtUtil {
+public class JwtService {
     @Value("${jwt.secret}")
     private String secretKey;
     @Value("${jwt.expiration}")
