@@ -1,5 +1,6 @@
 package com.ordernest.service;
 
+import com.ordernest.dto.JwtClaims;
 import com.ordernest.entity.UserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -35,18 +36,20 @@ public class JwtService {
                 .compact();
     }
 
-    public UUID extractUserId(String token) {
-        return UUID.fromString(getPayload(token).getSubject());
-    }
-
-    public String extractEmail(String token) {return getPayload(token).get("email", String.class);}
-
     private Claims getPayload(String token) {
         return Jwts.parser()
                 .verifyWith(getSecretKey())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
+    }
+
+    public JwtClaims extractClaims(String token) {
+        Claims payload = getPayload(token);
+        UUID userId = UUID.fromString(payload.getSubject());
+        String email = payload.get("email", String.class);
+        UserRole role = UserRole.valueOf(payload.get("role", String.class));
+        return  new JwtClaims(userId, email, role);
     }
 
 }
